@@ -5,3 +5,6 @@ Data/tea_convert_uniref50/
 Data/tea_convert_pdb/
 Data/tea_convert_akitsu/
 Data/tea_convert_afdb_cluster/
+Data/out/akitsu_uniref50/
+out/akitsu_uniref50/
+Data/fasta_guide.pdf

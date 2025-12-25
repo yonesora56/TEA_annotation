@@ -4,31 +4,40 @@ cwlVersion: v1.2
 label: "ggsearch for TEA converted FASTA files"
 doc: |
   ggsearch command process for TEA converted FASTA files.
-  more details: https://github.com/PickyBinders/tea?tab=readme-ov-file#using-tea-sequences-with-ggsearch
-  help: docker run --rm quay.io/biocontainers/fasta3:36.3.8i--h7b50bb2_3 ggsearch36 --help
-  command example: <example command here>
+  (1) more details: https://github.com/PickyBinders/tea?tab=readme-ov-file#using-tea-sequences-with-ggsearch
+  (2) see also: https://fasta.bioch.virginia.edu/wrpearson/fasta/fasta_guide.pdf
+  (3) help: docker run --rm quay.io/biocontainers/fasta3:36.3.8i--h7b50bb2_3 ggsearch36 --help
 
 requirements:
   ShellCommandRequirement: {}
+  InitialWorkDirRequirement:
+    listing:
+      - entryname: matcha.mat
+        entry: $(inputs.substitution_matrix_file)
 
-# baseCommand: [ggsearch36]
+baseCommand: [ggsearch36]
 
-# arguments:
-#   - -s"$(inputs.substitution_matrix_file.path)"
-#   - -m8C
-#   - -f $(inputs.gap_open)
-#   - -g $(inputs.gap_extend)
-#   - $(inputs.query_fasta_file.path)
-#   - $(inputs.target_fasta_file.path)
+arguments:
+  - -s
+  - matcha.mat
+  - -m
+  - 8XC
+  - -f
+  - $(inputs.gap_open)
+  - -g
+  - $(inputs.gap_extend)
+  - -T
+  - $(inputs.threads)
+  - $(inputs.query_fasta_file.path)
+  - $(inputs.target_fasta_file.path)
+
+stdout: $(inputs.output_file_name)
 
 inputs:
   - id: substitution_matrix_file
     type: File
     label: "Substitution matrix file"
-    doc: |
-      Substitution matrix file for search.
-      please see: https://github.com/PickyBinders/tea?tab=readme-ov-file#using-tea-sequences-with-ggsearch
-      please set the file name to "matcha.mat"
+    doc: "Substitution matrix file for search."
     default:
       class: File
       location: ../Data/matcha.mat
@@ -44,6 +53,12 @@ inputs:
     label: "Gap extend"
     doc: "Gap extend for search."
     default: 3
+
+  - id: threads
+    type: int
+    label: "Threads"
+    doc: "Threads for search."
+    default: 16
 
   - id: query_fasta_file
     type: File
@@ -66,20 +81,6 @@ inputs:
     label: "Output file name"
     doc: "Output file name for search."
     default: "ggsearch_tea_akitsu_galba_uniref50.tsv"
-
-stdout: $(inputs.output_file_name)
-
-arguments:
-  - shellQuote: false
-    valueFrom: |
-      cp $(inputs.substitution_matrix_file.path) /usr/local/share/data/ && \
-      ggsearch36 -s /usr/local/share/data/matcha.mat \
-      -m 8XC \
-      -f $(inputs.gap_open) \
-      -g $(inputs.gap_extend) \
-      $(inputs.query_fasta_file.path) \
-      $(inputs.target_fasta_file.path) > $(inputs.output_file_name)
-
 
 outputs:
   - id: output_file

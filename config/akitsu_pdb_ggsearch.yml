@@ -1,0 +1,5 @@
+target_fasta_file:
+  class: File
+  location: ../Data/tea_convert_pdb/pdb-seqres.tea_251121.fasta
+
+output_file_name: ggsearch_akitsu_galba_pdb.tsv
