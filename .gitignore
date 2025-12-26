@@ -8,3 +8,6 @@ Data/tea_convert_afdb_cluster/
 Data/out/akitsu_uniref50/
 out/akitsu_uniref50/
 Data/fasta_guide.pdf
+/.DS_Store
+/out/.DS_Store
+/Data/.DS_Store

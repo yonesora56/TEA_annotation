@@ -1,0 +1,44 @@
+########################################
+# Program: needle
+# Rundate: Fri 26 Dec 2025 23:44:49
+# Commandline: needle
+#    -asequence /var/lib/cwl/stgf69ebd06-1e00-497a-95e3-dbb7d608d137/1u4a_A_tea.fasta
+#    -bsequence /var/lib/cwl/stgdd077d83-058d-446c-a7d0-ce1dd5207615/1d3z_A_tea.fasta
+#    -gapopen 18
+#    -gapextend 3
+#    -outfile needle_1u4a_A_1d3z_A.needle
+#    -datafile matcha.mat
+#    -nobrief
+#    -awidth 100
+# Align_format: srspair
+# Report_file: needle_1u4a_A_1d3z_A.needle
+########################################
+
+#=======================================
+#
+# Aligned_sequences: 2
+# 1: 1u4a_A
+# 2: 1d3z_A
+# Matrix: matcha.mat
+# Gap_penalty: 18.0
+# Extend_penalty: 3.0
+#
+# Length: 87
+# Identity:      76/87 (87.4%)
+# Similarity:    76/87 (87.4%)
+# Gaps:          11/87 (12.6%)
+# Score: 614.185
+# Longest_Identity = 100.00%
+# Longest_Similarity = 100.00%
+# Shortest_Identity = 87.36%
+# Shortest_Similarity = 87.36%
+#
+#=======================================
+
+1u4a_A             1 TGMNPRPQFIYYMGPVPEPQFSMQFSYGRVACRWACEMQFSYGNPRFIYMGPEFSMGFSYACMQFSMNPRPQFIYYTTTTTTTIIIT     87
+                        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||        
+1d3z_A             1 ---NPRPQFIYYMGPVPEPQFSMQFSYGRVACRWACEMQFSYGNPRFIYMGPEFSMGFSYACMQFSMNPRPQFIYYTTT--------     76
+
+
+#---------------------------------------
+#---------------------------------------
