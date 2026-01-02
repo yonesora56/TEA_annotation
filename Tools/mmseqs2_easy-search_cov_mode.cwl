@@ -34,6 +34,12 @@ arguments:
   - $(inputs.exact_kmer_matching)
   - --threads
   - $(inputs.threads)
+  - -c
+  - $(inputs.cov_fraction)
+  - --cov-mode
+  - $(inputs.cov_mode)
+  - --rescore-mode
+  - $(inputs.rescore_mode)
 
 inputs:
   - id: query_fasta_file
@@ -56,7 +62,7 @@ inputs:
     type: string
     label: "Output file name"
     doc: "Output file name for search."
-    default: "mmseqs2_easy_search_akitsu_galba_uniref50.tsv"
+    default: "mmseqs2_easy_search_akitsu_galba_uniref50_cov_mode_0_rescore_mode_3.tsv"
 
   - id: format_mode
     type: int
@@ -113,7 +119,35 @@ inputs:
     label: "Threads"
     doc: "Threads for search."
     default: 16
-    
+
+  - id: cov_fraction
+    type: float
+    label: "Cov fraction"
+    doc: "List matches above this fraction of aligned (covered) residues (see --cov-mode) [0.000]"
+    default: 0.75
+
+  - id: cov_mode
+    type: int
+    label: "Cov mode"
+    doc: |
+      0: coverage of query and target
+      1: coverage of target
+      2: coverage of query
+      3: target seq. length has to be at least x% of query length
+      4: query seq. length has to be at least x% of target length
+      5: short seq. needs to be at least x% of the other seq. length
+    default: 0
+
+  - id: rescore_mode
+    type: int
+    label: "Rescore mode"
+    doc: |
+      0: Hamming distance
+      1: local alignment (score only)
+      2: local alignment
+      3: global alignment
+      4: longest alignment fulfilling window quality criterion
+    default: 3
 
 outputs:
   - id: output_file
